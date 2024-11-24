@@ -24,7 +24,6 @@ def list_view(request):
 
 # TODO: convert list_view to be class based.
 class BlogListView(ListView):
-    model = Post
     queryset = Post.objects.exclude(published_date__exact=None).order_by('-published_date')
     template_name = 'blogging/list.html'
 
@@ -39,6 +38,5 @@ def detail_view(request, post_id):
 
 # TODO: convert detail_view to be class based
 class BlogDetailView(DetailView):
-    model = Post
     queryset = Post.objects.exclude(published_date__exact=None)
     template_name = 'blogging/detail.html'
