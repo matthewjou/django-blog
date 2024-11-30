@@ -5,33 +5,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 
-# old version
-# def list_view(request):
-#     context = {'polls': Poll.objects.all()}
-#     return render(request, 'polling/list.html', context)
-
-
 class PollListView(ListView):
     model = Poll
     template_name = 'polling/list.html'
-
-
-# old version
-# def detail_view(request, poll_id):
-#     try:
-#         poll = Poll.objects.get(pk=poll_id)
-#     except Poll.DoesNotExist:
-#         raise Http404
-
-#     if request.method == "POST":
-#         if request.POST.get("vote") == "Yes":
-#             poll.score += 1
-#         else:
-#             poll.score -= 1
-#         poll.save()
-
-#     context = {'poll': poll}
-#     return render(request, 'polling/detail.html', context)
 
 
 class PollDetailView(DetailView):
