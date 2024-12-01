@@ -13,18 +13,18 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 
 class Category(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField(blank=True)
-    posts = models.ManyToManyField(Post, blank=True, related_name='categories')
+    posts = models.ManyToManyField(Post, blank=True, related_name="categories")
 
     def __str__(self):
         return self.name
-    
+
     class Meta:
-        verbose_name_plural = 'Categories' 
+        verbose_name_plural = "Categories"
 
 
 class CategoryInline(admin.TabularInline):
@@ -32,14 +32,13 @@ class CategoryInline(admin.TabularInline):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'created_date', 'published_date')
-    list_filter = ('published_date', 'author')
-    search_fields = ('title', 'text')
+    list_display = ("title", "author", "created_date", "published_date")
+    list_filter = ("published_date", "author")
+    search_fields = ("title", "text")
     inlines = [CategoryInline]
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
-    search_fields = ('name', 'description')
-    exclude = ('posts',)
-
+    list_display = ("name", "description")
+    search_fields = ("name", "description")
+    exclude = ("posts",)
