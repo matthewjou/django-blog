@@ -1,16 +1,16 @@
 from django.shortcuts import render
-from django.http import Http404
 from polling.models import Poll
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class PollListView(ListView):
+class PollListView(LoginRequiredMixin, ListView):
     model = Poll
     template_name = "polling/list.html"
 
 
-class PollDetailView(DetailView):
+class PollDetailView(LoginRequiredMixin, DetailView):
     model = Poll
     template_name = "polling/detail.html"
 
