@@ -9,10 +9,14 @@
     <div id="header">  {# header begins here #}
       <ul id="control-bar">
       {% if user.is_authenticated %}
-       {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">admin</a></li>{% endif %}
-        <li><a href="{% url 'logout' %}">logout</a></li>
+       {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">Admin</a></li>{% endif %}
+        <li><a href="{% url 'blog_index' %}">Post</a></li>
+        <li><a href="{% url 'add_post' %}">Add Post</a></li>
+        <li><a href="{% url 'poll_index' %}">Polls</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
        {% else %}
-        <li><a href="{% url 'login' %}">login</a></li>
+        <li><a href="{% url 'sign_up' %}">Sign Up</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
       {% endif %}
       </ul>
     </div>
