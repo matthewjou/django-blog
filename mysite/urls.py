@@ -33,29 +33,11 @@ def logout_view(request):
     return redirect('/login')
 
 
-# def sign_up_view(request):
-#     if request.method == "POST":
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)  # Log the user in after successful sign-up
-#             return redirect('/login')
-#     else:
-#         form = SignUpForm()
-
-#     return render(request, 'signup.html', {'form': form})
-
 def signup_view(request):
-	# if request.user.is_authenticated:
-	# 	return redirect('/login')
 	if request.method == "POST":
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			form.save()
-			# username = form.cleaned_data.get('username')
-			# password = form.cleaned_data.get('password')
-			# user = authenticate(username=username, password=password)
-			# login(request, user)
 			return redirect('/login')
 		else:
 			messages.error(request, 'Correct the errors below')
@@ -63,11 +45,6 @@ def signup_view(request):
 		form = SignUpForm()
 
 	return render(request, 'signup.html', {'form': form})
-
-class SignUpView(CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy("/login")
-    template_name = "signup.html"
 
 
 urlpatterns = [
